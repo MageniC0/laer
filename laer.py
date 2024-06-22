@@ -1,14 +1,15 @@
-#预处理
+import os
 from PIL import Image
-print("loading...")
-basic_image = Image.open("0002.png")#要堆叠的方块
-bitmap = Image.new( "RGBA", (49,47))#4*4*4画布
-shadow_basic = Image.new('RGBA', (13, 13), (0,0,0,0))#表面渲染空间
-cube = basic_image.copy()#直接堆叠物
-shadow_image = shadow_basic.copy()#对于直接堆叠物的最终表面渲染
+import json
 
-#terraria = [[[0 for _ in range(4)]for _ in range(4)]for _ in range (4)]
-#任务表
+print("loading...")
+floder_path = "textures"
+basic_image = Image.open(os.path.join(floder_path,"0002.png")
+bitmap = Image.new( "RGBA", (49,47))
+shadow_basic = Image.new('RGBA', (13, 13), (0,0,0,0))
+cube = basic_image.copy()
+shadow_image = shadow_basic.copy()
+
 terraria = [
     #z = 1
     [[1,1,1,1],
@@ -67,7 +68,7 @@ for z_with in range(4):
                 shadow2 = near[4] + 2 * near[5] + 4 * near[6] + 8 * near[7]
                 shadow2 = format(shadow2, 'x').zfill(1)
                 filename = f"ff{shadow2}{shadow1}.png"
-                shadow_image = Image.open(filename)
+                shadow_image = Image.open(os.path.join(floder_path,filename)
                 cube.alpha_composite(shadow_image)
                 bitmap.alpha_composite(cube,(map_x,map_y))
                 shadow_image = shadow_basic.copy()
@@ -75,13 +76,4 @@ for z_with in range(4):
 #完成
 bitmap.save(file_name)
 bitmap.show()
-
-
-
-
-
-
-
-
-
 print(f"saved as {file_name}.")
