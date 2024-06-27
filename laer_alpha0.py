@@ -1,9 +1,15 @@
 
+name = input("name:")+".png"
+tr_name = input("terrian name:")+".map"
+c_name = input("resourse name:")+".trr"
 
+print("loading script...")
 
+import os
+import json
+from PIL import Image
 
-
-
+#...
 
 bl = [[0,0,0,0,0,1,1,1,0,0,0,0,0],
       [0,0,1,1,1,1,1,1,1,1,1,0,0],
@@ -68,6 +74,12 @@ def e(c):
     g = r * 75 // 100
     b = r * 75 // 100
     return (r,g,b)
+
+print("loading terrian...")
+
+#...
+
+print("loading pixels...")
 
 for z in range(4):
     for y in range(4):
@@ -142,3 +154,7 @@ for z in range(4):
                             for j in range(3):
                                 if q[i][j]:
                                     B[m+i+3][n+j+4] = 1
+
+#...
+
+print("saved as {name}.")
