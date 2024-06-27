@@ -3,11 +3,11 @@ def pos(x,y,z):
     n = 12 + x + y - 4 * z
     retern 2*m,2*n
 
-def e(co):
-    r,g,b = co
-    r = r // 4 * 3
-    g = g // 4 * 3
-    b = b // 4 * 3
+def e(c):
+    r,g,b = c
+    r = r // 4 + r // 2
+    g = g // 4 + g // 2
+    b = b // 4 + b // 2
     return (r,g,b)
 
 for z in range(4):
