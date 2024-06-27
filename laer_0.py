@@ -61,6 +61,12 @@ def e(c):
     g = r * 75 // 100
     b = r * 75 // 100
     return (r,g,b)
+def f(c):
+    r,g,b = c
+    r = r * 875 // 1000
+    g = g * 875 // 1000
+    b = b * 875 // 1000
+    return (r,g,b)
 
 print("loading terrian...")
 tr_path = os.path.join("map", tr_name)
@@ -143,8 +149,16 @@ for z in range(4):
                             for j in range(3):
                                 if q[i][j]:
                                     B[m+i+3][n+j+4] = 1
-
+                                      
 print("on rail...")
-#...
-
+map = Image.new("RGBA",(49,49))
+for i in range(49):
+    for j in range(49):
+        if r != 0 and g != 0 and b != 0:
+            if B[i][j]:
+                r,g,b = f(A[i][j])
+                map.putpixel((i,j),(r,g,b,255))
+            else:
+                map.putpixel((i,j),(0,0,0,0))
+map.save(name)
 print("saved as {name}.")
