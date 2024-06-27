@@ -1,16 +1,11 @@
-
 name = input("name:")+".png"
-tr_name = input("terrian name:")+".map"
-c_name = input("resourse name:")+".trr"
+tr_name = input("terrian map:")+".json"
 
 print("loading script...")
-
 import os
 import json
 from PIL import Image
-
 #...
-
 bl = [[0,0,0,0,0,1,1,1,0,0,0,0,0],
       [0,0,1,1,1,1,1,1,1,1,1,0,0],
       [1,1,1,1,1,1,1,1,1,1,1,1,1],
@@ -23,20 +18,16 @@ bl = [[0,0,0,0,0,1,1,1,0,0,0,0,0],
       [1,1,1,1,1,1,1,1,1,1,1,1,1],
       [0,0,1,1,1,1,1,1,1,1,1,0,0],
       [0,0,0,0,0,1,1,1,0,0,0,0,0]]
-
 up = [[0,0,0,1,1,1,0,0,0],
       [1,1,1,1,1,1,1,1,1],
       [1,1,1,1,1,1,1,1,1],
       [0,0,0,1,1,1,0,0,0]]
-
 lp = [[1,1,0,0,0,0,0],
       [0,0,1,1,1,0,0],
       [0,0,0,0,0,1,1]]
-
 rp = [[0,0,0,0,0,1,1],
       [0,0,1,1,1,0,0],
       [1,1,0,0,0,0,0]]
-
 fl = [[1,1,0,0,0,0],
       [1,1,1,1,1,0],
       [1,1,1,1,1,1],
@@ -47,7 +38,6 @@ fl = [[1,1,0,0,0,0],
       [1,1,1,1,1,1],
       [0,0,1,1,1,1],
       [0,0,0,0,0,1]]
-
 fr = [[0,0,0,0,1,1],
       [0,1,1,1,1,1],
       [1,1,1,1,1,1],
@@ -58,16 +48,13 @@ fr = [[0,0,0,0,1,1],
       [1,1,1,1,1,1],
       [1,1,1,1,0,0],
       [1,0,0,0,0,0]]
-
 qi = [[1,1,0],
       [1,1,0],
       [0,1,1]]
-
 def pos(x,y,z):
     m = 9 - 3 * x - 3 * y
     n = 12 + x + y - 4 * z
     return m * 2, n * 2
-
 def e(c):
     r,g,b = c
     r = r * 75 // 100
@@ -76,11 +63,13 @@ def e(c):
     return (r,g,b)
 
 print("loading terrian...")
-
-#...
+tr_path = os.path.join("map", tr_name)
+with open(file_path, 'r', encoding='utf-8') as f:
+    tr = json.load(f)
+tr_n = tr.get('n', [])
+tr_c = tr.get('c', [])
 
 print("loading pixels...")
-
 for z in range(4):
     for y in range(4):
         for x in range(4):
@@ -155,6 +144,7 @@ for z in range(4):
                                 if q[i][j]:
                                     B[m+i+3][n+j+4] = 1
 
+print("on rail...")
 #...
 
 print("saved as {name}.")
