@@ -45,9 +45,9 @@ def pos(x,y,z):
 
 def e(c):
     r,g,b = c
-    r = r // 4 + r // 2
-    g = g // 4 + g // 2
-    b = b // 4 + b // 2
+    r = r * 75 // 100
+    g = r * 75 // 100
+    b = r * 75 // 100
     return (r,g,b)
 
 for z in range(4):
@@ -99,3 +99,13 @@ for z in range(4):
                             for j in range(3):
                                 if rp[i][j]:
                                     B[m+i+6][n+j+10] = 1
+                if n[0]:
+                    for i in range(6):
+                        for j in range(10):
+                            if fl[i][j]:
+                                A[m+i][n+j+3] = a
+                if n[2]:
+                    for i in range(6):
+                        for j in range(10):
+                            if fr[i][j]:
+                                A[m+i+7][n+j+3] = a
