@@ -60,10 +60,13 @@ def create_or_update_entry(data):
         for entry in data:
             if entry['code'] == code:
                 name = input("请输入新的name（或按回车保留原name）: ") or entry['name']
-                ab_input = input("请输入新的AB值（或按回车保留原AB）: ") or entry['AB']
-                entry['name'] = name
-                entry['AB'] = ab_input
-                print("条目已更新！")
+                a = input("请输入新的A值:")
+                b = input("请输入新的B值:")
+                r1, g1, b1 = a[:2], a[2:4], a[4:]
+                r1, g1, b1 = int(r1, 16), int(g1, 16), int(b1, 16)
+                r2, g2, b2 = b[:2], b[2:4], b[4:]
+                r2, g2, b2 = int(r2, 16), int(g2, 16), int(b2, 16)
+                ab = ((r1,g1,b1),(r2,g2,b2))
                 return
         print("未找到指定的code!")
 
@@ -81,19 +84,19 @@ def create_or_update_entry(data):
         for entry in data:
             if entry['code'] == code:
                 found = True
-                # 更新条目的代码保持不变
+                
                 break
         if found:
           code = int(code)
-        for entry in data:
-            if entry['code'] == code:
-                name = input("请输入新的name（或按回车保留原name）: ") or entry['name']
-                ab_input = input("请输入新的AB值（或按回车保留原AB）: ") or entry['AB']
-                entry['name'] = name
-                entry['AB'] = ab_input
-                print("条目已更新！")
-                return
-        print("未找到指定的code!")
+          for entry in data:
+              if entry['code'] == code:
+                  name = input("请输入新的name（或按回车保留原name）: ") or entry['name']
+                  ab_input = input("请输入新的AB值（或按回车保留原AB）: ") or entry['AB']
+                  entry['name'] = name
+                  entry['AB'] = ab_input
+                  print("条目已更新！")
+                  return
+          print("未找到指定的code!")
 
         else:
             print("已创建code:", code)  # 若找不到则提示已创建
