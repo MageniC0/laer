@@ -91,34 +91,49 @@ def create_or_update_entry(data):
           for entry in data:
               if entry['code'] == code:
                   name = input("请输入新的name（或按回车保留原name）: ") or entry['name']
-                  ab_input = input("请输入新的AB值（或按回车保留原AB）: ") or entry['AB']
+                  a = input("请输入新的A值:")
+                  b = input("请输入新的B值:"
+                  r1, g1, b1 = a[:2], a[2:4], a[4:]
+                  r1, g1, b1 = int(r1, 16), int(g1, 16), int(b1, 16)
+                  r2, g2, b2 = b[:2], b[2:4], b[4:]
+                  r2, g2, b2 = int(r2, 16), int(g2, 16), int(b2, 16)
+                  ab = ((r1,g1,b1),(r2,g2,b2))
                   entry['name'] = name
                   entry['AB'] = ab_input
                   print("条目已更新！")
                   return
-          print("未找到指定的code!")
+         print("未找到指定的code!")
 
         else:
             print("已创建code:", code)  # 若找不到则提示已创建
-
 def main():
-    
     while True:
         print("\n操作选项:")
-        print("1. 创建或更新条目")
-        print("2. 退出")
-        # 添加新的选项来删除条目
+        print("1. 创建条目")
+        print("2. 更新条目")
         print("3. 删除条目")
-        choice = input("请输入您的选择（1/2/3）: ")
+        print("4. 退出")
+        choice = input("请输入您的选择（1/2/3/4）: ")
         if choice == '1':
-            create_or_update_entry(data)
+            create_entry(data)
         elif choice == '2':
+            code = input("请输入要更新的code: ")
+            try:
+                code = int(code)
+                update_entry(data, code)
+            except ValueError:
+                print("无效的code，请输入一个整数！")
+        elif choice == '3':
+            code = input("请输入要删除的code: ")
+            try:
+                code = int(code)
+                delete_entry(data, code)
+            except ValueError:
+                print("无效的code，请输入一个整数！")
+        elif choice == '4':
             save_json(filename, data)
             break
-        elif choice == '3':
-            delete_entry(data, int(input("请输入要删除的code: ")))
         else:
             print("无效的选择，请重新输入！")
-
 if __name__ == '__main__':
     main()
