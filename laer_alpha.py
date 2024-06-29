@@ -1,11 +1,10 @@
-name = input("name:")+".png"
+file_name = input("file name:")+".png"
 tr_name = input("terrian map:")+".json"
 
 print("loading script...")
 import os
 import json
 from PIL import Image
-#...
 bl = [[0,0,0,0,0,1,1,1,0,0,0,0,0],
       [0,0,1,1,1,1,1,1,1,1,1,0,0],
       [1,1,1,1,1,1,1,1,1,1,1,1,1],
