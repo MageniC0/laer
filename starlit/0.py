@@ -20,5 +20,5 @@ def lu(i):
     cla(i)
     clb(i)
 
-lu("input/")
-lu("output/")
+lu("资源包/")
+lu("地图册/")
