@@ -1,0 +1,3 @@
+lustrous A 是lustrous支线的发行版
+首先运行0.py
+在input/文件夹放入素材，生成方块图形
